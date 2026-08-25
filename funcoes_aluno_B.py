@@ -7,6 +7,7 @@ def filtrarEventosPorCategoria(listaEventos, categoria):
     for evento in listaEventos:
         if evento["categoria"].lower() == categoria.lower():
             eventos_filtrados.append(evento)
+            print("Eventos disponiveis de acordo com a categoria: ", evento["categoria"])
     return eventos_filtrados
 
 

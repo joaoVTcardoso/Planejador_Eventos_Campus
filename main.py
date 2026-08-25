@@ -39,7 +39,7 @@ def menu_principal():
             limpar_tela()
 
             nome , data, local , genero = funcoes_aluno_A.lerValoresEvento()
-            funcoes_aluno_A.adicionarEvento(funcoes_aluno_A.lista_eventos, nome, data , local , genero)
+            funcoes_aluno_A.adicionarEvento(funcoes_aluno_A.listaEventos, nome, data , local , genero)
 
             espaco_vazio()
             enter_confirm()
@@ -54,9 +54,12 @@ def menu_principal():
             enter_confirm()
             espaco_vazio()
 
-        elif opcoes == '2':
+        elif opcoes == '3':
             limpar_tela()
+            categoria = funcoes_aluno_A.lerValoresEvento
+            funcoes_aluno_B.filtrarEventosPorCategoria(funcoes_aluno_A.listaEventos, categoria)
             print("teste03")
+            
         elif opcoes == '4':
             limpar_tela()
             print("teste04")

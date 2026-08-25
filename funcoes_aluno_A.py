@@ -1,7 +1,7 @@
 import main
 import funcoes_aluno_B
 
-lista_eventos = []
+listaEventos = []
 lista_eventos_geral = []
 
 def mostraEventoDetalhado (evento):
