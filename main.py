@@ -63,11 +63,23 @@ def menu_principal():
 
         elif opcoes == '4':
             limpar_tela()
-            print("teste04")
+            espaco_vazio()
+            cat = input("Digite a categoria desejada: ")
+            resultado = funcoes_aluno_B.filtrarEventosPorCategoria(funcoes_aluno_A.lista_eventos, cat)
+            for evento in resultado:
+                print("-", evento["nome"])
+            espaco_vazio()
+            enter_confirm()
+            espaco_vazio()
 
         elif opcoes == '5':
             limpar_tela()
-            print("teste05")
+            espaco_vazio()
+            id_ev = int(input("Digite o ID do evento que participou: "))
+            funcoes_aluno_B.marcarEventoAtendido(funcoes_aluno_A.lista_eventos, id_ev)
+            espaco_vazio()
+            enter_confirm()
+            espaco_vazio()
 
         elif opcoes == '6':
             limpar_tela()
@@ -75,7 +87,11 @@ def menu_principal():
 
         elif opcoes == '7':
             limpar_tela()
-            print("teste07")
+            espaco_vazio()
+            funcoes_aluno_B.gerarRelatorio(funcoes_aluno_A.lista_eventos)
+            espaco_vazio()
+            enter_confirm()
+            espaco_vazio()
 
         elif opcoes == '8':
             limpar_tela()

@@ -115,6 +115,3 @@ def deletarEvento(listaparaDeletar):
             print("Voce nao digitou ENTER")
     else:
         print("Nao foi possivel deletar o evento")
-
-
-       
