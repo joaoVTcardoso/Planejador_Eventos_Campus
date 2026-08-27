@@ -69,8 +69,6 @@ def menu_principal():
             so_pra_ver = True
             resultado = funcoes_aluno_B.filtrarEventosPorCategoria(funcoes_aluno_A.lista_eventos, cat, so_pra_ver)
             espaco_vazio()
-            #for so_pra_ver in funcoes_aluno_B.filtrarEventosPorCategoria:
-            #    print("Eventos disponiveis de acordo com a categoria: ", evento["categoria"])
             for evento in resultado:
                 espaco_vazio()
                 print("-", evento["nome"])
