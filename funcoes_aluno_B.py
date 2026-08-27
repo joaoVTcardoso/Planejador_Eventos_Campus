@@ -4,10 +4,17 @@ import funcoes_aluno_A
 
 def filtrarEventosPorCategoria(listaEventos, categoria):
     eventos_filtrados = []
+    print("Eventos disponiveis de acordo com a categoria: ", categoria)
     for evento in listaEventos:
         if evento["categoria"].lower() == categoria.lower():
             eventos_filtrados.append(evento)
-            print("Eventos disponiveis de acordo com a categoria: ", evento["categoria"])
+    
+    if (len(eventos_filtrados) == 0):
+        print("Nao foram encontrados eventos para a categoria")
+    else:
+        for evento in eventos_filtrados:
+            funcoes_aluno_A.mostraEventoDetalhado(evento)
+
     return eventos_filtrados
 
 
@@ -19,7 +26,7 @@ def marcarEventoAtendido(listaEventos, id_evento):
             encontrou = True
             print("\nEvento marcado como participado com sucesso!")
             break
-            
+
     if encontrou == False:
         print("\nNenhum evento foi encontrado com esse ID.")
 

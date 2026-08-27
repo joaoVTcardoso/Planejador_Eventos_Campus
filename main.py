@@ -11,8 +11,7 @@ def enter_confirm():
     verificar_enter = input("digite ENTER para continuar...")
     if verificar_enter == '':
         return 0
-    else:
-        print("Voce nao apertou enter")
+
 
 def limpar_tela():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -26,7 +25,8 @@ def displayMenu():
     print("5. Marcar Evento como Participado")
     print("6. Deletar Evento")
     print("7. Gerar Relatório")
-    print("8. Sair ")
+    print("8. Validar Data")
+    print("9. Sair ")
 
 def menu_principal():
 
@@ -39,13 +39,8 @@ def menu_principal():
         if opcoes == '1':
             limpar_tela()
 
-<<<<<<< HEAD
             nome , data, local , genero = funcoes_aluno_A.lerValoresEvento()
-            funcoes_aluno_A.adicionarEvento(funcoes_aluno_A.listaEventos, nome, data , local , genero)
-=======
-            nome, data, local, genero = funcoes_aluno_A.lerValoresEvento()
-            funcoes_aluno_A.adicionarEvento(funcoes_aluno_A.lista_eventos, nome, data, local, genero)
->>>>>>> 0911d6ade528f7d870e09a8a33995fb5f97ad755
+            funcoes_aluno_A.adicionarEvento(funcoes_aluno_A.lista_eventos, nome, data , local , genero)
 
             espaco_vazio()
             enter_confirm()
@@ -62,23 +57,22 @@ def menu_principal():
 
         elif opcoes == '3':
             limpar_tela()
-<<<<<<< HEAD
-            categoria = funcoes_aluno_A.lerValoresEvento
-            funcoes_aluno_B.filtrarEventosPorCategoria(funcoes_aluno_A.listaEventos, categoria)
-            print("teste03")
-            
-=======
             espaco_vazio()
             funcoes_aluno_A.pesquisaPorNomeEventos(funcoes_aluno_A.lista_eventos)
             espaco_vazio()
-
->>>>>>> 0911d6ade528f7d870e09a8a33995fb5f97ad755
+            
         elif opcoes == '4':
             limpar_tela()
             espaco_vazio()
             cat = input("Digite a categoria desejada: ")
-            resultado = funcoes_aluno_B.filtrarEventosPorCategoria(funcoes_aluno_A.lista_eventos, cat)
+            espaco_vazio()
+            so_pra_ver = True
+            resultado = funcoes_aluno_B.filtrarEventosPorCategoria(funcoes_aluno_A.lista_eventos, cat, so_pra_ver)
+            espaco_vazio()
+            #for so_pra_ver in funcoes_aluno_B.filtrarEventosPorCategoria:
+            #    print("Eventos disponiveis de acordo com a categoria: ", evento["categoria"])
             for evento in resultado:
+                espaco_vazio()
                 print("-", evento["nome"])
             espaco_vazio()
             enter_confirm()
@@ -87,7 +81,7 @@ def menu_principal():
         elif opcoes == '5':
             limpar_tela()
             espaco_vazio()
-            id_ev = int(input("Digite o ID do evento que participou: "))
+            id_ev = input("Digite o ID do evento que participou: ")
             funcoes_aluno_B.marcarEventoAtendido(funcoes_aluno_A.lista_eventos, id_ev)
             espaco_vazio()
             enter_confirm()
@@ -96,6 +90,7 @@ def menu_principal():
         elif opcoes == '6':
             limpar_tela()
             funcoes_aluno_A.deletarEvento(funcoes_aluno_A.lista_eventos)
+            enter_confirm()
 
         elif opcoes == '7':
             limpar_tela()
@@ -107,7 +102,27 @@ def menu_principal():
 
         elif opcoes == '8':
             limpar_tela()
-            print("teste08")
+
+            id_evento_data = int(
+                input("Digite o ID do evento (número da ordem que ele foi criado): ")
+            )
+
+            resultado = funcoes_aluno_A.verificar_data(
+                funcoes_aluno_A.lista_eventos,
+                id_evento_data
+            )
+            espaco_vazio()
+            print(resultado)
+            espaco_vazio()
+            enter_confirm()
+
+
+        elif opcoes == '9':
+            limpar_tela()
+            espaco_vazio()
+            print("voce terminou o programa")
+            espaco_vazio()
+            break
         
         else:
             limpar_tela()

@@ -1,8 +1,17 @@
 import main
 import funcoes_aluno_B
+from datetime import datetime, date
 
-listaEventos = []
+lista_eventos = []
 lista_eventos_geral = []
+
+
+def validarData(data):
+    try:
+        datetime.strptime(data, "%d/%m/%Y")
+        return True
+    except ValueError:
+        return False
 
 def mostraEventoDetalhado (evento):
     print("Nome do evento:", evento["nome"])
@@ -23,26 +32,29 @@ def lerValoresEvento ():
     adicionar_evento_nome  = input("\ndigite o nome evento que voce deseja adicionar: ")
     adicionar_evento_data  = input("\ndigite a data de realização dele: ")
     adicionar_evento_local  = input("\ndigite o local onde acontecera o evento: ")
-    adicionar_evento_genero  = input("\ndigite qual o tipo de evento: ")
+    adicionar_evento_genero  = input("\ndigite qual a categoria do evento: ")
     return adicionar_evento_nome, adicionar_evento_data, adicionar_evento_local, adicionar_evento_genero
 
 # função para adicionar listas
 def adicionarEvento(listaEventos, nome, data, local, categoria):            
     
-    if (len(lista_eventos) == 0):
-        id = 1
-    else:
-        id = lista_eventos[-1]["id"] + 1
+    if validarData(data) == True:
+        if (len(lista_eventos) == 0):
+            id = 1
+        else:
+            id = lista_eventos[-1]["id"] + 1
 
-    evento = {
-        "id": id,
-        "nome": nome,
-        "data": data,
-        "local": local,
-        "categoria": categoria
-    }
- 
-    listaEventos.append(evento)
+        evento = {
+            "id": id,
+            "nome": nome,
+            "data": data,
+            "local": local,
+            "categoria": categoria
+        }
+    
+        listaEventos.append(evento)
+    else:
+        print("Data invalida, nao foi possivel cadastrar o evento")
         
         
 #funcao de mostra a lista de eventos
@@ -89,11 +101,10 @@ def pesquisaPorNomeEventos(eventos):
                 flag = True
                 mostraEventoDetalhado(evento) 
 
-                main.enter_confirm()
                 main.espaco_vazio()
         
         if (flag == False):
-            print("Não foi possível encontrar o")
+            print("Não foi possível encontrar o evento com o nome digitado, verifique se esta coretamente digitado")
 
 def deletarEvento(listaparaDeletar):
     evento_a_deletar = int(input("digite um numero do evento que deseja deletar(ordem crecente): "))
@@ -115,3 +126,29 @@ def deletarEvento(listaparaDeletar):
             print("Voce nao digitou ENTER")
     else:
         print("Nao foi possivel deletar o evento")
+        main.espaco_vazio()
+
+from datetime import datetime, date
+
+
+def verificar_data(lista_eventos, id_evento_data):
+    hoje = date.today()
+
+    for evento in lista_eventos:
+        if evento["id"] == id_evento_data:
+            data_evento = datetime.strptime(
+                evento["data"], "%d/%m/%Y"
+            ).date()
+
+            if data_evento < hoje:
+                dias = (hoje - data_evento).days
+                return f"O evento aconteceu há {dias} dias."
+
+            elif data_evento == hoje:
+                return "O evento está acontecendo hoje!"
+
+            else:
+                dias = (data_evento - hoje).days
+                return f"O evento acontecerá daqui a {dias} dias."
+
+    return "Evento não encontrado."
